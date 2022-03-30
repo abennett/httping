@@ -79,6 +79,9 @@ func parseArgs() (string, time.Duration, error) {
 	if err != nil {
 		return "", d, fmt.Errorf("%s is not a valid duration", os.Args[2])
 	}
+	if d < MinimumFreq {
+		return "", d, fmt.Errorf("%s is below the minimum frequency of %s", d, MinimumFreq)
+	}
 	return u.String(), d, nil
 }
 
